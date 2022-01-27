@@ -35,7 +35,7 @@ public class RobotContainer {
   //Subsystems
   private final Drivetrain drivetrain = new Drivetrain();
   //private final Shooter shooter = new Shooter();
-  //private final Processor2 process2 = new Processor2();
+  private final Processor intake = new Processor();
   //private final Pneumatics pneumatics = new Pneumatics();  
   //private final CameraController camera = new CameraController();
 
@@ -53,21 +53,16 @@ public class RobotContainer {
   
 
   //Buttons
+  private final JoystickButton intakeButton = new JoystickButton(xbox, 1);
+  
+
   //Driving
   private final JoystickButton invertDirectionButton = new JoystickButton(xbox, 6);
 
-  // Pneumatics
-  private final JoystickButton shiftButton = new JoystickButton(xbox, 5);
   
 
   // Processor
-  
-
-  // Shooter 
-  
-  private final JoystickButton hoodToNormal = new JoystickButton(xbox, 1);
-  private final JoystickButton accuracyShoot = new JoystickButton(xbox, 2);
-
+  private final RunIntake intakeCommand = new RunIntake(intake, xbox);
   
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -97,8 +92,9 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-
     
+    //intake
+    intakeButton.whenPressed(intakeCommand);
   }
 
   /**

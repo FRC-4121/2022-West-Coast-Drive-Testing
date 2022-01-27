@@ -19,16 +19,18 @@ package frc.robot;
 public final class Constants {
     //Talon SRX and FX IDs (must be unique, may range from 0+)
     public static final int LEFT_MASTER_F = 3;
-    public static final int LEFT_SLAVE_F = 5;
-    public static final int RIGHT_MASTER_F = 2;
+    public static final int LEFT_SLAVE_F = 2;
+    public static final int RIGHT_MASTER_F = 1;
     public static final int RIGHT_SLAVE_F = 4;
-    public static final int CLIMBER = 1;
+    public static final int CLIMBER = 999;
 
+    //Spark IDs
+    public static final int INTAKE=5;
 
     //Drive control port IDs
     public static final int XBOX_PORT = 0;
 
-
+    
 
     public static class DrivetrainConstants {
 
@@ -67,5 +69,14 @@ public final class Constants {
         public static final int FILTER_WINDOW_SIZE = 150;
 
         public static int DIRECTION_MULTIPLIER = 1;//Controls whether forward on joysticks is forward or backward on robot
+        
+        
+    
     }
+
+    //Xbox controller button IDS
+    public static final int xboxAButton = 0;
+    public static final int xboxBButton = 1;
+    public static final int xboxXButton = 2;
+    public static final int xboxYButton = 3;
 }

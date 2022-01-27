@@ -24,7 +24,6 @@ public class Climber extends SubsystemBase {
     //constructor
     //runs the methods written below
     public Climber(){
-        
     }
 
 
