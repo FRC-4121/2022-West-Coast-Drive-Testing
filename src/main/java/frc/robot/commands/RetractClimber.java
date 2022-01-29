@@ -8,13 +8,14 @@ import frc.robot.subsystems.Climber;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj.XboxController;
 
-public class RunClimber extends CommandBase {
+public class RetractClimber extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final Climber m_climber;
   private XboxController xboxJoysticks;
 
-
-  public RunClimber(Climber subsystem, XboxController xbox) {
+   
+  //constructor
+  public RetractClimber(Climber subsystem, XboxController xbox) {
     m_climber = subsystem;
     xboxJoysticks=xbox;
     addRequirements(subsystem);
@@ -27,14 +28,14 @@ public class RunClimber extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_climber.climbExtend(xboxJoysticks);
-    m_climber.climbRetract(xboxJoysticks);
-
+      m_climber.climbRetract(xboxJoysticks);
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted){
+    m_climber.climbStop(xboxJoysticks);
+  }
 
   // Returns true when the command should end.
   @Override

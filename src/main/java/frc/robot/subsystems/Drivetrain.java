@@ -18,7 +18,7 @@ import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.ADXRS450_Gyro;
 //import edu.wpi.first.wpilibj.LinearFilter;
 //import edu.wpi.first.wpilibj.MedianFilter;
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -35,8 +35,8 @@ public class Drivetrain extends SubsystemBase {
   private WPI_TalonFX rightMasterFalcon;
   private WPI_TalonFX rightSlaveFalcon;
 
-  private SpeedControllerGroup leftMotorGroup;
-  private SpeedControllerGroup rightMotorGroup;
+  private MotorControllerGroup leftMotorGroup;
+  private MotorControllerGroup rightMotorGroup;
 
   private DifferentialDrive drivetrain;
 
@@ -119,11 +119,11 @@ public class Drivetrain extends SubsystemBase {
     //Init motors, speed controller groups, and drivetrain
     leftMasterFalcon = new WPI_TalonFX(LEFT_MASTER_F);
     leftSlaveFalcon = new WPI_TalonFX(LEFT_SLAVE_F);
-    leftMotorGroup = new SpeedControllerGroup(leftMasterFalcon, leftSlaveFalcon);
+    leftMotorGroup = new MotorControllerGroup(leftMasterFalcon, leftSlaveFalcon);
 
     rightMasterFalcon = new WPI_TalonFX(RIGHT_MASTER_F);
     rightSlaveFalcon = new WPI_TalonFX(RIGHT_SLAVE_F);
-    rightMotorGroup = new SpeedControllerGroup(rightMasterFalcon, rightSlaveFalcon);
+    rightMotorGroup = new MotorControllerGroup(rightMasterFalcon, rightSlaveFalcon);
 
     drivetrain = new DifferentialDrive(leftMotorGroup, rightMotorGroup);
     //drivetrain.setRightSideInverted(false);

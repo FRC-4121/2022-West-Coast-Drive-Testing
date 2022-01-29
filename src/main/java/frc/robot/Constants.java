@@ -22,15 +22,28 @@ public final class Constants {
     public static final int LEFT_SLAVE_F = 2;
     public static final int RIGHT_MASTER_F = 1;
     public static final int RIGHT_SLAVE_F = 4;
-    public static final int CLIMBER = 999;
 
-    //Spark IDs
+    public static final int RIGHT_CLIMBER = 7;
+    public static final int LEFT_CLIMBER = 6;
+    
     public static final int INTAKE=5;
 
     //Drive control port IDs
     public static final int XBOX_PORT = 0;
 
-    
+    //Xbox controller button IDS
+    public static final int xboxAButton = 0;
+    public static final int xboxBButton = 1;
+    public static final int xboxXButton = 2;
+    public static final int xboxYButton = 3;
+    public static final int xboxLeftBumber = 5;
+    public static final int xboxRightBumber = 6;
+
+    //Climber
+    public static final int kPIDLoopIdxClimb = 0;
+    public static final int kTimeoutMsClimb = 20;
+
+
 
     public static class DrivetrainConstants {
 
@@ -73,10 +86,4 @@ public final class Constants {
         
     
     }
-
-    //Xbox controller button IDS
-    public static final int xboxAButton = 0;
-    public static final int xboxBButton = 1;
-    public static final int xboxXButton = 2;
-    public static final int xboxYButton = 3;
 }

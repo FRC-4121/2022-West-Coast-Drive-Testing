@@ -4,22 +4,21 @@
 
 package frc.robot.commands;
 
-
+import frc.robot.subsystems.Climber;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj.XboxController;
-import frc.robot.subsystems.Processor;
 
-public class RunIntake extends CommandBase {
+public class ExtendClimber extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
-  private final Processor intakeProcessor;
+  private final Climber m_climber;
   private XboxController xboxJoysticks;
 
-
-  public RunIntake(Processor intake, XboxController xbox){
-    intakeProcessor = intake;
-    xboxJoysticks = xbox;
-
-    addRequirements(intake);
+   
+  //constructor
+  public ExtendClimber(Climber subsystem, XboxController xbox) {
+    m_climber = subsystem;
+    xboxJoysticks=xbox;
+    addRequirements(subsystem);
   }
 
   // Called when the command is initially scheduled.
@@ -28,14 +27,15 @@ public class RunIntake extends CommandBase {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute(){
-      intakeProcessor.runIntake(xboxJoysticks);      
+  public void execute() {
+      m_climber.climbExtend(xboxJoysticks);
+
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {
-    intakeProcessor.stopIntake(xboxJoysticks);
+  public void end(boolean interrupted){
+    m_climber.climbStop(xboxJoysticks);
   }
 
   // Returns true when the command should end.

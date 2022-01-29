@@ -34,27 +34,24 @@ public class RobotContainer {
 
   //Subsystems
   private final Drivetrain drivetrain = new Drivetrain();
-  //private final Shooter shooter = new Shooter();
   private final Processor intake = new Processor();
-  //private final Pneumatics pneumatics = new Pneumatics();  
-  //private final CameraController camera = new CameraController();
-
-  //Extra classes
- // public final NetworkTableQuerier ntables = new NetworkTableQuerier();
+  private final Climber climber = new Climber();
 
 
   //Commands
   //Driving
   private final DriveWithJoysticks driveCommand = new DriveWithJoysticks(drivetrain, xbox);
-  //private final InvertDirection invertCommand = new InvertDirection(drivetrain, camera);
 
- 
-  
+  //Climbing
+  private final ExtendClimber extendClimberCommand = new ExtendClimber(climber, xbox);
+  private final RetractClimber retractClimberCommand = new RetractClimber(climber, xbox);
   
 
   //Buttons
   private final JoystickButton intakeButton = new JoystickButton(xbox, 1);
-  
+  private final JoystickButton climberExtendButton = new JoystickButton(xbox, xboxLeftBumber);
+  private final JoystickButton climberRetractButton = new JoystickButton(xbox, xboxRightBumber);
+
 
   //Driving
   private final JoystickButton invertDirectionButton = new JoystickButton(xbox, 6);
@@ -82,7 +79,6 @@ public class RobotContainer {
 
     //Drivetrain -> drive with xbox joysticks
     drivetrain.setDefaultCommand(driveCommand);
-
   }
 
   /**
@@ -94,7 +90,11 @@ public class RobotContainer {
   private void configureButtonBindings() {
     
     //intake
-    intakeButton.whenPressed(intakeCommand);
+    intakeButton.whileHeld(intakeCommand);
+
+    //climber
+    climberExtendButton.whileHeld(extendClimberCommand);
+    climberRetractButton.whileHeld(retractClimberCommand);
   }
 
   /**

@@ -9,7 +9,10 @@ import static frc.robot.Constants.*;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
+import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
+import static frc.robot.Constants.DrivetrainConstants.*;
 
 import edu.wpi.first.wpilibj.XboxController;
 
@@ -18,35 +21,33 @@ public class Climber extends SubsystemBase {
     
     //attributes
     //motor controller
-     private WPI_TalonFX climberMotor = new WPI_TalonFX(CLIMBER);
-    
+     private final WPI_TalonFX slaveClimberMotor = new WPI_TalonFX(RIGHT_CLIMBER);
+     private final WPI_TalonFX masterClimberMotor = new WPI_TalonFX(LEFT_CLIMBER);
+     private double motorDistance;
+     
     
     //constructor
-    //runs the methods written below
     public Climber(){
+        slaveClimberMotor.follow(masterClimberMotor);
+        slaveClimberMotor.setInverted(kMotorInvert);
+
+        masterClimberMotor.configSelectedFeedbackSensor(FeedbackDevice.IntegratedSensor, kPIDLoopIdxClimb, kTimeoutMsClimb);
     }
 
 
 
     //methods
-    public void climbStop(){
-        climberMotor.set(ControlMode.PercentOutput, 0);
+    public void climbStop(XboxController xbox){
+        masterClimberMotor.set(ControlMode.PercentOutput, 0);
     }
 
     public void climbExtend(XboxController xbox){
-        while(xbox.getRightBumper()){
-            climberMotor.set(ControlMode.PercentOutput, 0.5);
-        }  
-        climbStop();
+        masterClimberMotor.set(ControlMode.PercentOutput, -0.1);
     }
 
     public void climbRetract(XboxController xbox){
-        while(xbox.getLeftBumper()){
-            climberMotor.set(ControlMode.PercentOutput, -0.5);
-        }
-        climbStop();
+        masterClimberMotor.set(ControlMode.PercentOutput, 0.1);
     }
-
 
     @Override
     public void periodic() {
